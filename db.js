@@ -1,5 +1,5 @@
 const fs = require('fs');
-
+const FILE = './products.JSON'
 
 module.exports = (FILE, validator) => {
   const writeJSON = (data)=> {
