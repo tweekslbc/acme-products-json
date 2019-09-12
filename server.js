@@ -3,14 +3,14 @@ const path = require('path');
 const app = express();
 const db= require('./db');
 
-const dataLayer = db();
+const dataLayer = db('./products.json');
 
 app.use(express.json());
 
 app.get('/', (req, res, next)=> {
   const it = path.join(__dirname, 'index.html');
   console.log(it);
-  res.sendFile(it);
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/api/products', async(req, res, next)=>{
