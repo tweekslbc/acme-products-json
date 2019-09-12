@@ -1,4 +1,17 @@
 [
-  {"name": "foo", "id": 1, "price": 100},
-  {"name": "bar", "id": 2, "price": 10}
+  {
+    "name": "Bizz",
+    "price": "3",
+    "id": 3
+  },
+  {
+    "name": "foa",
+    "price": "5",
+    "id": 4
+  },
+  {
+    "name": "nui",
+    "price": "4",
+    "id": 5
+  }
 ]
