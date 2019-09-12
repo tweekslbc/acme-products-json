@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.get('/', (req, res, next)=> {
   const it = path.join(__dirname, 'index.html');
-  console.log(it);
+
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -23,6 +23,7 @@ catch (ex){
 });
 
 app.post('/api/products', async(req, res, next)=>{
+  console.log(req.body);
   try {
   res.send(await dataLayer.create(req.body));
 }

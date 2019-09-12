@@ -36,17 +36,28 @@ input, button{
         async componentDidMount(){
           this.setState({ products: ( await axios.get('/api/products')).data});
         }
+        async create(ev){
+          const {name, price} = ev.target.value;
+          try{const products = (await axios.post(`/api/products/${product.id}`, {name, price})).data;
+            this.setState({ products: [...this.state.products, product]});}
+          catch(ex){
+
+          }
+        }
+
+
         render(){
           const { products, name, error, price } = this.state;
+          const { create } = this;
           return (
             <div>
               <h1>Acme Products</h1>
               { error && <div className='error'>{ error }</div> }
-              <div className='form'>
+              <form onSubmit={create}>
                 <input placeholder='Product Name' value={ name } onChange={ ev => this.setState({ name: ev.target.value })}/>
                 <input value={ price } placeholder='Product Price' onChange={ ev => this.setState({ price: ev.target.value })}/>
-                <button onClick={()=> console.log('TODO Create')}>Create</button>
-              </div>
+                <button type="submit">Create</button>
+              </form>
               <ul>
                 {
                   products.map( product => <li onClick={()=> console.log('TO DO Destroy')} key={ product.id }>
