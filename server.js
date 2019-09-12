@@ -3,24 +3,28 @@ const path = require('path');
 const app = express();
 const db= require('./db');
 
+const dataLayer = db();
+
 app.use(express.json());
 
 app.get('/', (req, res, next)=> {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  const it = path.join(__dirname, 'index.html');
+  console.log(it);
+  res.sendFile(it);
 });
 
-app.get('/api/users', async(req, res, next)=>{
+app.get('/api/products', async(req, res, next)=>{
   try {
-  res.send(await db.getUsers());
+  res.send(await dataLayer.findAll());
 }
 catch (ex){
   next(ex);
 }
 });
 
-app.post('/api/users', async(req, res, next)=>{
+app.post('/api/products', async(req, res, next)=>{
   try {
-  res.send(await db.createUser(req.body));
+  res.send(await dataLayer.create(req.body));
 }
 catch (ex){
   next(ex);
